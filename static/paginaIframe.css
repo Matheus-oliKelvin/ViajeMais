@@ -1,0 +1,42 @@
+iframe{
+    margin-top: 60px; /*por causa do cabecalho*/
+    width: 100%;
+    height:85vh;
+    border:none;
+}
+
+
+.cabecalho{
+    width: 100%;
+    height: 80px;
+    background-color: #0A3D62;
+    color: #1E90FF;
+    display: flex;
+    position: fixed;
+    padding:0 35px;
+    align-items: center;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+.cabecalho a{
+     color: #FF8C42;
+     text-decoration: none;
+     margin: 0 40px;
+     font-size: 19px;
+     font-family: "Oswald", sans-serif;
+}
+
+.cabecalho img {
+    width: 300px;
+    height: 300px;
+}
+
+.linkSobreLogo { /* a area de link da img estava muito grande */
+  position: absolute;
+  top: 10px; left: 35px;
+  width: 200px;
+  height: 60px;
+  display: block;
+  background: transparent; /* invisível */
+}

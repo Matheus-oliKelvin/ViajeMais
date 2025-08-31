@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Viaje+</title>
+    <link rel="stylesheet" href="../static/rotasHorarios.css">
+</head>
+<body>
+    <div class="corpo">
+    <div class="filtro">
+        <label for="viagem_origem">origem</label>
+         <form action="/buscar_rotas" method="post" >
+               <select id="viagem_origem" name="opcoes_viagem_origem">
+                   <option value="Sousa" >Sousa</option>
+                   <option value="Vierópolis "> Virópolis</option>
+                   <option value="Tenente Ananias" >Tenente Ananias</option>
+                   <option value="Santa Cruz">Santa Cruz</option>
+
+                </select>
+                 <label for="viagem_destino"> destino</label>
+                 <select id="viagem_destino" name="opcoes_viagem_destino">
+                     <option value="Sousa" >Sousa</option>
+                     <option value="Vierópolis ">Vierópolis</option>
+                     <option value="Tenente Ananias" >Tenente Ananias</option>
+                     <option value="Santa Cruz">Santa Cruz</option>
+                </select>
+                <button type="submit" >Buscar</button >
+            </form>
+
+    </div>
+    <a href="https://www.google.com">
+        <div class="catalogo_viagens">
+        {% for viagem in viagens %}
+            <br>
+             <a> {{viagem[0]}} ------ {{viagem[1]}}</a>
+
+            <hr>
+        {% endfor %}
+    </div>
+    </a>
+
+</div>
+
+
+</body>
+</html>

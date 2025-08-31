@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dados Passageiros</title>
+</head>
+<body>
+    <h2> DADOS DOS PASSAGEIROS</h2>
+      {% for passageiro in dados_passageiros %}
+        <br>
+        <a>Nome: {{ passageiro[0] }} <a>
+        <br>
+        <a>Cpf: {{ passageiro[1] }} <a>
+        <br>
+        <a>E-mail: {{ passageiro[2] }} <a>
+          <hr>
+      {% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dados Ônibus</title>
+</head>
+<body>
+    <h2> DADOS DOS ÔNIBUS </h2>
+      {% for onibus in dados_onibus %}
+        <br>
+        <a>id: {{ onibus[0] }} <a>
+        <br>
+        <a>assentos: {{ onibus[1] }} <a>
+        <br>
+        <a>motorista: {{ onibus[2] }} <a>
+          <hr>
+      {% endfor %}
+
+</body>
+</html

@@ -1,0 +1,39 @@
+body{
+
+}
+
+
+.senhaAdm{
+  margin-top: 200px;
+  margin-left: 42%;
+  width: 300px;
+  height: 300px;
+  background-color: #577590;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  border-radius:10px;
+}
+
+.senhaAdm input{
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+
+.senhaAdm label{
+    margin-right: 80%;
+}
+
+.senhaAdm button{
+    margin-top: 30px;
+    background-color:#0A3D62;
+    color:#F5F5F5;
+    font-weight: bold;
+    border-radius: 3px;
+    border: 1px solid #0A3D62;
+     width: 60%;
+    height: 40px;
+}

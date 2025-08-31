@@ -1,0 +1,99 @@
+.corpo{
+    background-color: #577590;
+    color: white;
+}
+
+.viagem{
+    height: 800px;
+    width:100%;
+}
+
+.viagem-topo{
+     background-color: #90BE6D;
+      color: white;
+      cursor: pointer;
+}
+
+.viagem-conteudo{
+    margin-top: 50px;
+    border-radius: 8px;
+     display: flex;
+     flex-wrap: wrap;
+      flex-direction: row; /* organiza em linha */
+      gap: 8px;
+    justify-content: center; /* centraliza as fileiras */
+     max-height: 0;        /* Mantém a área "fechada": altura máxima = 0 (fica escondido). */
+      padding: 0 15px; /* 0 em cima/baixo e 15px nas laterais (para o texto não colar na borda).*/
+      overflow: hidden;
+}
+
+.viagem-conteudo form {
+    width: 100%;       /* ocupa toda a largura */
+    display: flex;
+    flex-wrap: wrap;   /* mantém os assentos organizados */
+    justify-content: center;
+    gap: 8px;
+}
+.viagem-conteudo button{
+    margin-top: 50px;
+}
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label {
+  display: inline-flex;       /* permite width/height funcionarem */
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked + label {
+    background: #1E90FF;
+    color: black;
+    border-color: #1E90FF;
+}
+
+
+.assento_livre{
+     width: 35px;
+    height: 35px;
+    border: 2px solid black;
+    color: lightblue;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.assento_ocupado{
+     width: 35px;
+    height: 35px;
+    border: 2px solid gray;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: not-allowed;
+}
+
+
+
+
+.viagem-conteudo.open{
+        margin-left: 30%;
+        width: 900px;
+        max-height: 900px;   /* Quando aberto, permite até 500px de altura (valor suficiente para o conteúdo). */
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 15px;
+         border: 2px solid black;/* Restaura o padding completo (inclui topo e base) quando aberto. */
+}
+
+.descricoes{
+    display: flex;
+}
+
+
