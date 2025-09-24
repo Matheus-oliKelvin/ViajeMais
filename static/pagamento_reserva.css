@@ -1,5 +1,11 @@
-.login{
-     margin-top: 200px;
+.corpo{
+    display: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagamento{
+    margin-top: 200px;
     margin-left: 42%;
     background-color: #577590;
     width: 300px;
@@ -9,21 +15,21 @@
     padding: 20px;
     border-radius:10px;
 }
-.login input{
+.pagamento input{
     width: 90%;
     height: 40px;
     border-radius: 5px;
     border: 1px solid white;
 }
-.login a{
-    color: #FF8C42;
-    text-decoration: none;
+.pagamento a{
+    color: #0A3D62;
+
 }
 
-.login label{
+.pagamento label{
     margin-right: 80%;
 }
-.login button{
+.pagamento button{
     margin-top: 30px;
     margin-bottom: 5px;
     background-color:#0A3D62;

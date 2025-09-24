@@ -1,45 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title> Viaje+</title>
-    <link rel="stylesheet" href="../static/rotasHorarios.css">
+    <title>Viaje+</title>
+    <link rel="stylesheet" href="../static//viagens.css">
+    <script src="../static/viagens_abrir.js"></script>.
+
 </head>
 <body>
     <div class="corpo">
-    <div class="filtro">
-        <label for="viagem_origem">origem</label>
-         <form action="/buscar_rotas" method="post" >
-               <select id="viagem_origem" name="opcoes_viagem_origem">
-                   <option value="Sousa" >Sousa</option>
-                   <option value="Vierópolis "> Virópolis</option>
-                   <option value="Tenente Ananias" >Tenente Ananias</option>
-                   <option value="Santa Cruz">Santa Cruz</option>
-
-                </select>
-                 <label for="viagem_destino"> destino</label>
-                 <select id="viagem_destino" name="opcoes_viagem_destino">
-                     <option value="Sousa" >Sousa</option>
-                     <option value="Vierópolis ">Vierópolis</option>
-                     <option value="Tenente Ananias" >Tenente Ananias</option>
-                     <option value="Santa Cruz">Santa Cruz</option>
-                </select>
-                <button type="submit" >Buscar</button >
-            </form>
-
-    </div>
-    <a href="https://www.google.com">
-        <div class="catalogo_viagens">
-        {% for viagem in viagens %}
+        <h2> Opções de Viagens disponiveis </h2>
+        <h3> Filtrar:</h3>
+         <form action="/buscar_rotas" method="post">
+        <select id="viagem_origem" name="opcoes_viagem_origem" >
+            <option value="" disabled selected> Origem</option>
+            <option value="Sousa" >Sousa</option>
+            <option value="Vieropolis"> Virópolis</option>
+            <option value="Tenente Ananias" >Tenente Ananias</option>
+            <option value="Santa Cruz">Santa Cruz</option>
+        </select>
+        <br>
+        <select id="viagem_destino" name="opcoes_viagem_destino">
+             <option value="" disabled selected> Destino</option>
+            <option value="Sousa" >Sousa</option>
+            <option value="Vieropolis">Vierópolis</option>
+            <option value="Tenente Ananias" >Tenente Ananias</option>
+            <option value="Santa Cruz">Santa Cruz</option>
+        </select>
+        <br> <br> <br>
+        <button type="submit" ><b>Buscar</b></button >
+        </form>
+        <br>
+        <a> {{viagens|length}} viagens encontradas</a> <!-- filtro para o length -->
+        <br> <br>
+        <a> Horário</a>
+        {% for viagem in viagens: %}
             <br>
-             <a> {{viagem[0]}} ------ {{viagem[1]}}</a>
-
-            <hr>
-        {% endfor %}
+            <div class="viagem">
+                <div class="viagem-topo" onclick="toggleCard(this)">
+                    <p>{{viagem[0]}}  </p>
+                    <p>{{viagem[1]}}  </p>
+                    <hr>
+                </div>
+                <div class="viagem-conteudo" >
+                    <form action="/reservar_assento" method="post">
+                    <input type="hidden" name="id_viagem" value="{{ viagem[2] }}">
+                    {% for i in range(1, viagem[4] + 1) %} <!-- mais um pq coneça do 1 -->
+                        {% if i|string in viagem[9] %} <!-- o i|string tranforma o i em string -->
+                            <div class= "assento_livre">
+                                <input type="checkbox" id="assento-{{viagem[2]}}-{{i}}" name="assentos" value="{{i}}">
+                                <label for="assento-{{viagem[2]}}-{{i}}" class="assento livre">{{ i }}</label>
+                            </div>
+                        {% else %}
+                        <div class="assento_ocupado"> <a>❌</a> </div>
+                            {% endif %}
+                    {% endfor %}
+                    <button> enviar</button>
+                    </form>
+                </div>
+        </div>
+        <br>
+        {%endfor%}
     </div>
-    </a>
-
-</div>
 
 
 </body>

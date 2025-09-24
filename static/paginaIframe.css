@@ -13,11 +13,10 @@ iframe{
     color: #1E90FF;
     display: flex;
     position: fixed;
-    padding:0 35px;
+    padding:0 35px;   /*0: top e bottom    35: direita e esquerda*/
     align-items: center;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+    top: 0; /*  gruda em cima*/
+    left: 0; /*gruda na lateral esquerda*/
 }
 .cabecalho a{
      color: #FF8C42;
@@ -34,7 +33,8 @@ iframe{
 
 .linkSobreLogo { /* a area de link da img estava muito grande */
   position: absolute;
-  top: 10px; left: 35px;
+  top: 10px;
+   left: 35px;
   width: 200px;
   height: 60px;
   display: block;

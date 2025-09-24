@@ -5,6 +5,38 @@
     <title>Dados Viagens</title>
 </head>
 <body>
+    <h1> DADOS DAS VIAGENS</h1>
+    {% for viagem in dados_viagens %}
+            <br>
+                <a>Origem: {{ viagem[0] }} </a>
+                <br>
+                <a>Destino: {{ viagem[1] }} </a>
+                <br>
+                <a>Id da viagem: {{ viagem[2] }} </a>
+                <br>
+                <a>Nome do Motorista: {{ viagem[3] }} </a>
+                <br>
+                <a>Quantidade de assentos totais: {{ viagem[4] }} </a>
+                <br>
+                <a> Data de partida: {{ viagem[5] }} </a>
+                    <br>
+                <a>Horario de partida: {{ viagem[6] }} </a>
+                    <br>
+                <a>Horario de chegada: {{ viagem[7] }} </a>
+                    <br>
+                <a>Valor da passagem: {{ viagem[8] }} </a>
+                    <br>
+                <a>Assentos disponiveis: {{ viagem[9] }} </a>
 
+                {% for reserva in reserva_dados %}
+                    {% if reserva[1] and reserva[2] == viagem[2] %}
+                        <h2>  Passageiros:</h2>
+                        <a> Cpf do passageiro: {{reserva[0]}}</a>
+                        <br>
+                        <a> assento(s) escolhido(s): {{reserva[1]}}</a>
+                    {% endif %}
+                {% endfor %}
+            <hr>
+          {% endfor %}
 </body>
 </html>

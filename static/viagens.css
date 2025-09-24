@@ -4,7 +4,7 @@
 }
 
 .viagem{
-    height: 800px;
+    height: 300px;
     width:100%;
 }
 
@@ -19,7 +19,6 @@
     border-radius: 8px;
      display: flex;
      flex-wrap: wrap;
-      flex-direction: row; /* organiza em linha */
       gap: 8px;
     justify-content: center; /* centraliza as fileiras */
      max-height: 0;        /* Mantém a área "fechada": altura máxima = 0 (fica escondido). */
@@ -85,7 +84,7 @@ input[type="checkbox"]:checked + label {
 .viagem-conteudo.open{
         margin-left: 30%;
         width: 900px;
-        max-height: 900px;   /* Quando aberto, permite até 500px de altura (valor suficiente para o conteúdo). */
+        max-height: 500px;   /* Quando aberto, permite até 500px de altura (valor suficiente para o conteúdo). */
         padding-top: 10px;
         padding-bottom: 10px;
         padding-left: 15px;

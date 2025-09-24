@@ -13,22 +13,22 @@
         <br>
         <a> {{viagens|length}} viagens encontradas</a> <!-- filtro para o length -->
         <br> <br>
-        <a> Horário</a>
         {% for viagem in viagens: %}
             <br>
             <div class="viagem">
-                <div class="viagem-topo" onclick="toggleCard()">
+                <div class="viagem-topo" onclick="toggleCard(this)">
                     <p>{{viagem[0]}}  </p>
                     <p>{{viagem[1]}}  </p>
                     <hr>
                 </div>
-                <div class="viagem-conteudo" id="viagem-conteudo">
-                    <form action="/reservar_assento">
+                <div class="viagem-conteudo" >
+                    <form action="/reservar_assento" method="post">
+                    <input type="hidden" name="id_viagem" value="{{ viagem[2] }}">
                     {% for i in range(1, viagem[4] + 1) %} <!-- mais um pq coneça do 1 -->
                         {% if i|string in viagem[9] %} <!-- o i|string tranforma o i em string -->
                             <div class= "assento_livre">
-                                <input type="checkbox" id="assento{{i}}" name="assentos" value="{{i}}">
-                                <label for="assento{{i}}" class="assento livre">{{ i }}</label>
+                                <input type="checkbox" id="assento-{{viagem[2]}}-{{i}}" name="assentos" value="{{i}}">
+                                <label for="assento-{{viagem[2]}}-{{i}}" class="assento livre">{{ i }}</label>
                             </div>
                         {% else %}
                         <div class="assento_ocupado"> <a>❌</a> </div>
