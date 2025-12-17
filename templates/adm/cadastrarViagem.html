@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Viagem</title>
+    <link rel="stylesheet" href="../static/adm/cadastrarViagem.css">
+     <link rel="stylesheet" href="../static/adm/voltar.css">
+</head>
+<body>
+ <div class="voltar">
+        <a href="/login_adm"> voltar</a>
+    </div>
+
+ <div class="page-center">
+
+    <div class="form-card">
+        <h1>Cadastrar Viagem</h1>
+
+        <form action="/cadastrar_viagem" method="POST">
+
+            <label>Origem</label>
+            <input type="text" name="origem" required>
+
+            <label>Destino</label>
+            <input type="text" name="destino" required>
+
+            <label>Motorista</label>
+            <input type="text" name="motorista" required>
+
+            <label>Assentos Totais</label>
+            <input type="number" name="assentos_totais" required>
+
+            <label>Valor (R$)</label>
+            <input type="number" step="0.01" name="valor" required>
+
+            <label>Duração (min)</label>
+            <input type="number" name="duracao" required>
+
+            <label>Data</label>
+            <input type="date" name="data" required>
+
+            <label>Horário de Partida</label>
+            <input type="time" name="horario_partida" required>
+
+            <label>Horário de Chegada</label>
+            <input type="time" name="horario_chegada" required>
+
+            <button type="submit">Cadastrar</button>
+
+        </form>
+    </div>
+ </div>
+
+</body>
+</html>

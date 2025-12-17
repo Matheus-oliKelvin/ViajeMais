@@ -1,0 +1,17 @@
+.voltar{
+    background-color: #0A3D62;
+    width: 7.9vh;
+    height: 5.5vh;
+     text-align: center;
+     justify-content: center;
+     border-radius: 7px;
+     display: flex;
+  align-items: center;
+}
+
+.voltar a{
+    display: inline-block;
+     color: white;
+     text-decoration: none;
+     font-size: 2.5vh;
+}

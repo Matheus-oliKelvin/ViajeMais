@@ -1,0 +1,53 @@
+body{
+    background-color: #dde7e5;
+}
+
+.corpo{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-top: 200px;
+}
+
+.corpo button{
+    margin-top: 70px;
+    background-color: #0A3D62;
+    color: white;
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+}
+
+
+
+.onibus{
+    font-size: 13px;
+    border-radius: 20px;
+    height: 300px;
+     width: 200px;
+    background-color: #43AA8B;
+    color: white;
+     margin: 0 30px;
+}
+
+.passageiros{
+     font-size: 13px;
+    border-radius: 20px;
+     background-color: #43AA8B;
+     height: 300px;
+      width: 200px;
+     margin: 0 30px;
+     color: white;
+}
+
+.viagens{
+     font-size: 13px;
+    border-radius: 20px;
+    background-color: #43AA8B;
+     height: 300px;
+      width: 200px;
+     margin: 0 30px;
+     color: white;
+}

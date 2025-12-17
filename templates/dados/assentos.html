@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ASSENTOS</title>
+    <link rel="stylesheet" href="../static/dados/assentos.css">
+</head>
+<body>
+  <div class="container-assentos">
+    {% for assento in assentos %}
+        <div class="assento {% if assento.disponivel %}livre{% else %}ocupado{% endif %}">
+            {{ assento.numero }}
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+
+</html>

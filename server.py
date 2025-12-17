@@ -1,161 +1,242 @@
 from flask import *
-import datetime
+import datetime, random
+from datetime import datetime
+from dao.usuarioDAO import UsuarioDAO
+from dao.viagemDAO import ViagemDAO
+from modelos.modelos import Usuario, Viagem, Assentos
+from utils.utilidades import reservar_assentos
+from dao.banco import Session, init_db
 
 app= Flask(__name__)
-#BANCO DE DADOS:
-senha='123' #adm
-#origem, destino, id, motorista,quantAssentos,data, horarioSaida, horarioChegada, valor, assentos disponiveis
-viagens=[
-          ['Sousa', 'Tenente Ananias','001','Luís', 40,  datetime.date(2025, 8, 28, ),datetime.time(5,45),datetime.time(6,30),345.99,
-          [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-            "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-            "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
-            "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"]],
-          ['Santa Cruz', 'Vieropolis','002','Rafael', 45,  datetime.date(2025, 10, 5, ),datetime.time(10,30),datetime.time(12,30),200.99,
-           [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-            "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-            "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
-            "31", "32", "33", "34", "35", "36", "37", "38", "39", "40","41", "42", "43", "44", "45"]]]
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
-#cpf[0]  assento_selecionado[1]
+usuarios = None
+
+senha='123'
 reserva_assento=[]
-onibus=[['32332332', 40, 'Luís'], [ '2132323', 45,  'Rafael'] ] # [0] id, [1] assentos, [2] motorista
-passageiros=[]     #[0] nome  #[1] cpf
-#login true ou false[0]  [1] cpf do passageiro
-login=[False,'null']
+
+init_db()
+@app.before_request
+def pegar_sessao():
+    g.session = Session()
+
+@app.teardown_appcontext
+def encerrar_sessao(exception=None):
+    Session.remove()
+
 
 
 
 @app.route('/')
-def iframe():
-    return render_template('paginaIframe.html')
-@app.route('/homePage')
 def home():
-    return render_template('homePage.html')
+    viagem_dao = ViagemDAO(g.session)
+    viagens_aleatorias=random.sample(viagem_dao.listar_viagens(), min(len(viagem_dao.listar_viagens()),3))
+    return render_template('cliente/homePage.html',viagens=viagens_aleatorias)
+@app.route('/deslogar')
+def deslogar():
+    session.clear()
+    viagem_dao = ViagemDAO(g.session)
+    viagens_aleatorias = random.sample(viagem_dao.listar_viagens(), min(len(viagem_dao.listar_viagens()),3))
+    return render_template('cliente/homePage.html',viagens=viagens_aleatorias)
 @app.route('/loginuser')
 def login_user():
-    return render_template('loginUser.html')
+
+    return render_template('cliente/loginUser.html')
 @app.route('/cadastrouser')
 def cadastro_user():
-    return render_template('cadastroUser.html')
+    return render_template('cliente/cadastroUser.html')
 @app.route('/rotasHorarios')
 def horarios():
-    return render_template('rotasHorarios.html',viagens=viagens)
+    assentos_por_viagem = {}
+    viagem_dao = ViagemDAO(g.session)
+    lista_viagens= viagem_dao.listar_viagens()
+    for viagem in lista_viagens:
+        assentos_por_viagem[viagem.id]=viagem_dao.buscar_assentos_porid(viagem_id=viagem.id)
+    return render_template('cliente/rotasHorarios.html',viagens=lista_viagens, assentos_por_viagem=assentos_por_viagem)
 
 @app.route('/criarconta' ,methods=['post'])
 def criarconta():
-    global passageiros
+
+    usuario_dao= UsuarioDAO(g.session)
+
     nome = request.form.get('nome')
     cpf = request.form.get('cpf')
     email = request.form.get('email')
     senha_user = request.form.get('senha')
 
-    passageiros.append([nome, cpf, email, senha_user])
+    novo_usuario= Usuario(email=email,nome=nome,senha=senha_user,tipo=False, cpf=cpf)
 
-    return render_template('loginUser.html')
+    usuario_dao.criar(novo_usuario)
+
+    return render_template('cliente/loginUser.html')
 
 @app.route('/verificarAdm')
 def verificar_adm():
-    return render_template('verificacaoAdm.html')
+    return render_template('adm/verificacaoAdm.html')
 
 
-@app.route('/login_adm', methods=['POST'] )
+@app.route('/login_adm', methods=['POST', 'GET'] )
 def controle():
-    senhaa= request.form.get('senhaAdm')
-    if senhaa == senha:
-        return render_template('controleAdm.html')
+    if request.method == 'POST':
+        senhaa= request.form.get('senhaAdm')
+        if senhaa == senha:
+            session['adm'] = senha
+            return render_template('adm/controleAdm.html')
+        else:
+            return 'nao foi dessa vez'
     else:
-        return 'nao foi dessa vez'
+        return render_template('adm/controleAdm.html')
 
 @app.route('/login_usuario',methods=['POST'])
 def login_usu():
-    global login
-    usu_senha= request.form.get('senha')
-    email= request.form.get('email')
-    for passageiro in passageiros:
-        if usu_senha == passageiro[3] and email == passageiro[2] and login[0] == True:
-            return 'vc ja ta logado'
-        elif usu_senha == passageiro[3] and email == passageiro[2]:
-            login[0]= True
-            login[1]= passageiro[1]
-            return render_template('homePage.html')
+    if 'cliente' in session:
+        return 'vc ja ta logado'
 
-    return 'usuario não encontrado'
+
+    email= request.form.get('email')
+    usuario_dao=UsuarioDAO(g.session)
+    if usuario_dao.buscar_por_email(email) is None:
+        return 'usuario não encontrado'
+    else:
+        viagem_dao = ViagemDAO(g.session)
+        session['cliente'] = email
+        viagens_aleatorias = random.sample(viagem_dao.listar_viagens(),min(len(viagem_dao.listar_viagens()),3))
+        return render_template('cliente/homePage.html', viagens=viagens_aleatorias)
+
+
+@app.route('/pagina_viagemCadastro', methods=['get'])
+def acessar_viagem_cadastro():
+    if 'adm' in session:
+         return render_template('/adm/cadastrarViagem.html')
+    else:
+        return 'vc não tem autorização!'
+
+@app.route('/cadastrar_viagem', methods=['POST'])
+def cadastrar_viagem():
+    viagem_dao = ViagemDAO(g.session)
+
+    data = datetime.strptime(
+        request.form.get('data'),
+        "%Y-%m-%d"
+    ).date()
+
+    horario_partida = datetime.strptime(
+        request.form.get('horario_partida'),
+        "%H:%M"
+    ).time()
+
+    horario_chegada = datetime.strptime(
+        request.form.get('horario_chegada'),
+        "%H:%M"
+    ).time()
+
+    origem =  request.form.get('origem')
+    destino = request.form.get('destino')
+    motorista =  request.form.get('motorista')
+    assentos_totais =  int( request.form.get('assentos_totais'))
+    valor = float( request.form.get('valor'))
+    duracao = int( request.form.get('duracao'))
+    data =  data
+    horario_partida =  horario_partida
+    horario_chegada = horario_chegada
+
+    viagem = Viagem( origem=origem,destino=destino,motorista=motorista,assentos_totais=assentos_totais,valor=valor,duracao=duracao,data=data,horario_partida=horario_partida,horario_chegada=horario_chegada
+    )
+
+    viagem_dao.criar(viagem)
+
+    viagem_dao.criar_assentos(viagem)
+
+
+    return render_template('adm/controleAdm.html')
 
 @app.route('/dados_onibus', methods=['get'])
 def verificar_dados_onibus():
-    return render_template('/dados/dados_onibus.html', dados_onibus=onibus)
-
+    if 'adm' in session:
+         viagem_dao = ViagemDAO(g.session)
+         dados= viagem_dao.listar_viagens()
+         return render_template('/dados/dados_onibus.html', dados_onibus=dados)
+    else:
+        return 'vc não tem autorização!'
 @app.route('/dados_passageiros', methods=['get'])
 def verificar_dados_passageiros():
-    return render_template('/dados/dados_passageiros.html', dados_passageiros=passageiros)
+    if 'adm' in session:
+        usuario_dao = UsuarioDAO(g.session)
+        dados=usuario_dao.listar_usuarios()
+        return render_template('/dados/dados_passageiros.html', dados_passageiros=dados)
+    else:
+        return 'vc não tem autorização!'
+@app.route('/assentos', methods=['get'])
+def mostrar_assentos():
+    if 'adm' in session:
+        viagem_dao= ViagemDAO(g.session)
+        viagem_id = request.args.get('viagem_id')
+        assentos_todos= viagem_dao.buscar_assentos_porid(viagem_id)
+    return render_template('/dados/assentos.html', assentos=assentos_todos)
 
 @app.route('/dados_viagens')
 def verificar_dados_viagens():
-    return render_template('/dados/dados_viagens.html', dados_viagens=viagens,reserva_dados=reserva_assento)
+    if 'adm' in session:
+        viagem_dao = ViagemDAO(g.session)
+        dados = viagem_dao.listar_viagens()
+        return render_template('/dados/dados_viagens.html', dados_viagens=dados,reserva_dados=reserva_assento)
+    else:
+        return 'vc não tem autorização!'
 
 @app.route('/pagar', methods=['post'])
 def fazer_pagamento():
-    return render_template('/homePage.html')
-@app.route('/buscar_rotas', methods=['post'])
+    if 'cliente' in session:
+        viagem_dao = ViagemDAO(g.session)
+        viagens_aleatorias = random.sample(viagem_dao.listar_viagens(), min(len(viagem_dao.listar_viagens()),3))
+        return render_template('cliente/homePage.html',viagens=viagens_aleatorias)
+    else:
+        return "vc não está logado"
+
+@app.route('/buscar_rotas', methods=['POST', 'GET'])
 def buscar_rotas():
-    global viagens
-    origem=request.form.get('opcoes_viagem_origem')
-    destino=request.form.get('opcoes_viagem_destino')
+
+    origem = request.values.get('opcoes_viagem_origem') or request.values.get('origem')
+    destino = request.values.get('opcoes_viagem_destino') or request.values.get('destino')
     viagensmodif=[]
-    verificador=False
-    contador=0
+    assentos_por_viagem={}
+    viagem_dao = ViagemDAO(g.session)
+    viagens= viagem_dao.listar_viagens()
+
     for viagem in viagens:
-        if origem== 'Sousa' and destino== 'Tenente Ananias':
-            if viagem[0]== 'Sousa' and viagem[1]== 'Tenente Ananias':
-                viagensmodif.append(viagem)
-                verificador= True
-                contador=1
-                break
-            elif contador == 0 :
-                verificador=False
-        elif origem == 'Santa Cruz' and destino=='Vieropolis':
-            if viagem[0]== 'Santa Cruz' and viagem[1]== 'Vieropolis':
-                viagensmodif.append(viagem)
-                verificador= True
-                contador=1
-            elif  contador == 0 :
-                verificador=False
 
-        else:
-            verificador= False
-        contador=0
+        if viagem.origem== origem and viagem.destino==destino:
+            viagensmodif.append(viagem)
 
-    if not verificador:
+
+    if not viagensmodif:
         return 'erro'
     else:
-        return render_template('/viagens_filtradas.html',viagens=viagensmodif,reserva=reserva_assento)
+        for viagem in viagensmodif:
+            assentos_por_viagem[viagem.id] = viagem_dao.buscar_assentos_porid(viagem_id=viagem.id)
+        return render_template('cliente/viagens_filtradas.html',viagens=viagensmodif,assentos_por_viagem=assentos_por_viagem)
 
-@app.route('/reservar_assento', methods=['post'])
+@app.route('/reservar_assento', methods=['post', 'get'])
 def reservar_assento():
-    global reserva_assento
-    assentos_selecionados = request.form.getlist("assentos") #lista de assentos selecionados
-    id_viagem = request.form.get("id_viagem")
-    nomepassageiro= 'null'
-    preco_passagem=0
+    assentos_selecionados = request.form.getlist("assentos")
+    id_viagem = int(request.form.get("id_viagem"))
+
+    if 'cliente' not in session:
+        return render_template('cliente/loginUser.html')
+
+
+    usuario_dao = UsuarioDAO(g.session)
+    passageiros= usuario_dao.listar_usuarios()
+
     for passageiro in passageiros:
-        if passageiro[1] == login[1]:
-            nomepassageiro= passageiro[0]
-    if login[0]:
-        for viagem in viagens:
-            if viagem[2] == id_viagem:
-                preco_passagem=viagem[8]
-                for assento in assentos_selecionados:
-                        viagem[9].remove(assento)
-        if not reserva_assento:
-            reserva_assento=[[login[1],assentos_selecionados,id_viagem]]
-        else:
-            reserva_assento.append([login[1],assentos_selecionados,id_viagem])
-        return render_template('/pagamento_reserva.html',nome=nomepassageiro,assentos_select=len(assentos_selecionados), preco=preco_passagem)
+        if passageiro.email == session['cliente']:
+            nomepassageiro= passageiro.nome
+            passagem = reservar_assentos( id_viagem, assentos_selecionados, g.session)
+            return render_template('cliente/pagamento_reserva.html',nome=nomepassageiro,assentos_select=len(assentos_selecionados), preco=passagem)
+
+    return render_template('cliente/loginUser.html')
 
 
-    else:
-        return render_template('/loginUser.html') #não ta logado
+
 
 
 if __name__  == '__main__':

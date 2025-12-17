@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Viaje+</title>
+    <link rel="stylesheet" href="../static/cliente/homePage.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=location_on" />
+     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+     <header class="cabecalho">
+        <img src="../static/img/Viaje+_logo.png">
+        <a href="/"  class="linkSobreLogo"></a>
+        <a href="/rotasHorarios" > Rotas e Horários</a>
+        <a href="/loginuser" > Login</a>
+        <a href="/verificarAdm" > Acesso adm</a>
+
+         {% if 'cliente' in session: %}
+            <a href="/deslogar"> deslogar</a>
+         {% endif %}
+    </header>
+
+
+
+
+
+<div class="propaganda">
+    <div class="selerotas">
+        <h1> Selecione sua rota</h1>
+        <br>
+        <form action="/buscar_rotas" method="post">
+        <select name="opcoes_viagem_origem" >
+            <option value="" disabled selected> Origem</option>
+            <option value="Sousa" >Sousa</option>
+            <option value="Vieropolis"> Virópolis</option>
+            <option value="Tenente Ananias" >Tenente Ananias</option>
+            <option value="Santa Cruz">Santa Cruz</option>
+        </select>
+        <br>
+        <select  name="opcoes_viagem_destino">
+             <option value="" disabled selected> Destino</option>
+            <option value="Sousa" >Sousa</option>
+            <option value="Vieropolis">Vierópolis</option>
+            <option value="Tenente Ananias" >Tenente Ananias</option>
+            <option value="Santa Cruz">Santa Cruz</option>
+        </select>
+        <br> <br> <br>
+        <button type="submit" ><b>Buscar</b></button >
+        </form>
+    </div>
+</div>
+<div class=" titulo">
+    <h1> Viagens Populares</h1>
+</div>
+
+ <div class="principais_viagens">
+        {% for viagem in viagens %}
+        <a href="/buscar_rotas?origem={{viagem.origem}} &destino={{viagens.destino}}">
+        <div class="viagem">
+            <div class="viagem_imagem">
+                <img src="../static/img/{{viagem.destino}}.png" >
+            </div>
+            <div class="viagem_corpo">
+                <div class="rotas">
+                  <i class="fa-solid fa-location-dot" style="color: #365da1;"></i>
+                      <span> {{ viagem.origem}} </span>
+                </div>
+                  <br> <br>
+                <div class="rotas">
+                  <i class="fa-solid fa-location-dot" style="color: #365da1;"></i>
+                    <span>  {{viagem.destino}}</span>
+                    </div>
+            </div>
+             <p>A partir de</p>
+            <span> <b>  R${{viagem.valor}}</b></span>
+        </div>
+        </a>
+        {% endfor %}
+ </div>
+     <footer class="rodape">
+        <div class="rodape_cima">
+            <div class="logo">
+                <img src="../static/img/Viaje+_logo.png">
+            </div>
+             <div class="redes">
+               <a> <b>nossas redes sociais </b></a>
+            <a href="https://www.instagram.com/ana.lluizaax" target="_blank" class="instagram-link"> <i class="fab fa-instagram"></i>
+            </a>
+             </div>
+        </div >
+        <div class="rodape_baixo">
+            <div class="coluna">
+                <h3> <b>INSTITUCIONAL</b></h3>
+                <a href="#"> Sobre Nós</a>
+                <br>
+            </div>
+            <div class="coluna">
+                <h3> <b>AJUDA</b></h3>
+                <a href="#"> Perguntas Frequentes</a>
+                <br>
+                <a href="#"> Relatar Erro</a>
+                <br>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

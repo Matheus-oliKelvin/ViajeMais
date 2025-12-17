@@ -1,0 +1,83 @@
+body {
+    background-color: #d8e3e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+}
+
+
+.container-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.card-content {
+    width: 100%;
+    text-align: left;
+    margin-bottom: auto;
+}
+
+.card-content p {
+    color: white;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: 15px 0;
+}
+
+.card {
+    background-color: #43a98b;
+    width: 260px;
+    min-height: 350px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 20px;
+    color: white;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 10px;
+    width: 80%;
+    text-align: center;
+}
+
+.info-grupo {
+    text-align: center;
+}
+
+.card p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+    word-break: break-all;
+}
+
+
+.btn-verificar {
+    background-color: #073b5a;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.btn-verificar:hover {
+    background-color: #0a4f7a;
+    transform: scale(1.05);
+}

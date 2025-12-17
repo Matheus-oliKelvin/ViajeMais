@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Dados Ônibus</title>
+      <link rel="stylesheet" href="../static/adm/voltar.css">
+       <link rel="stylesheet" href="../static/dados/dados_onibus.css">
 </head>
 <body>
+    <div class="voltar">
+        <a href="/login_adm"> voltar</a>
+    </div>
     <h2> DADOS DOS ÔNIBUS </h2>
-      {% for onibus in dados_onibus %}
+    <div class="container-cards">
+      {% for viagem in dados_onibus %}
+        <div class="card">
         <br>
-        <a>id: {{ onibus[0] }} <a>
+        <a>ID {{ viagem.id }} <a>
         <br>
-        <a>assentos: {{ onibus[1] }} <a>
+        <a>Assentos: {{ viagem.assentos_totais }} <a>
         <br>
-        <a>motorista: {{ onibus[2] }} <a>
-          <hr>
+        <a>Motorista: {{ viagem.motorista }} <a>
+        </div>
       {% endfor %}
+    </div>
 
 </body>
-</html
+</html>

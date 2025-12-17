@@ -1,0 +1,55 @@
+.card-viagem {
+    background-color: #43a98b;
+    width: 320px;
+    min-height: 550px;
+    border-radius: 40px;
+   display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+
+.card-content {
+    width: 100%;
+    text-align: left;
+}
+
+.card-content a {
+    color: white;
+    font-size: 0.95rem;
+    margin: 8px 0;
+    line-height: 1.2;
+}
+
+
+.link-assentos {
+    display: block;
+    color: #073b5a;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-align: center;
+    margin: 15px 0;
+}
+
+
+.secao-passageiros {
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.secao-passageiros h4 {
+    color: #073b5a;
+    margin: 5px 0;
+    font-size: 1rem;
+}
+

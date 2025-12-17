@@ -3,40 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Dados Viagens</title>
+      <link rel="stylesheet" href="../static/adm/voltar.css">
+        <link rel="stylesheet" href="../static/dados/dados_viagens.css">
 </head>
 <body>
+    <div class="voltar">
+    <a href="/login_adm">voltar</a>
+</div>
     <h1> DADOS DAS VIAGENS</h1>
-    {% for viagem in dados_viagens %}
+
+    <div class="container-cards">
+        {% for viagem in dados_viagens %}
+        <div class="card card-viagem">
+            <div class="card-content">
             <br>
-                <a>Origem: {{ viagem[0] }} </a>
+                <a>Origem: {{ viagem.origem }} </a>
                 <br>
-                <a>Destino: {{ viagem[1] }} </a>
+                <a>Destino: {{ viagem.destino }} </a>
                 <br>
-                <a>Id da viagem: {{ viagem[2] }} </a>
+                <a>Id da viagem: {{ viagem.id }} </a>
                 <br>
-                <a>Nome do Motorista: {{ viagem[3] }} </a>
+                <a>Nome do Motorista: {{ viagem.motorista }} </a>
                 <br>
-                <a>Quantidade de assentos totais: {{ viagem[4] }} </a>
+                <a>Quantidade de assentos totais: {{ viagem.assentos_totais }} </a>
                 <br>
-                <a> Data de partida: {{ viagem[5] }} </a>
+                <a> Data de partida: {{ viagem.data }} </a>
                     <br>
-                <a>Horario de partida: {{ viagem[6] }} </a>
+                <a>Horario de partida: {{ viagem.horario_partida }} </a>
                     <br>
-                <a>Horario de chegada: {{ viagem[7] }} </a>
+                <a>Horario de chegada: {{ viagem.horario_chegada }} </a>
                     <br>
-                <a>Valor da passagem: {{ viagem[8] }} </a>
+                <a>Valor da passagem: {{ viagem.valor }} </a>
                     <br>
-                <a>Assentos disponiveis: {{ viagem[9] }} </a>
+               <a href="/assentos?viagem_id={{ viagem.id }}" target="_blank">checar assentos disponíveis</a>
 
                 {% for reserva in reserva_dados %}
-                    {% if reserva[1] and reserva[2] == viagem[2] %}
+                    {% if reserva.assentos and reserva[2] == viagem.id %}
                         <h2>  Passageiros:</h2>
+
                         <a> Cpf do passageiro: {{reserva[0]}}</a>
                         <br>
                         <a> assento(s) escolhido(s): {{reserva[1]}}</a>
                     {% endif %}
                 {% endfor %}
-            <hr>
+            </div>
+
+        </div>
           {% endfor %}
+    </div>
+
+
 </body>
 </html>

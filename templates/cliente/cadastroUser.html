@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Viaje+</title>
+    <link rel="stylesheet" href="../static/cliente/cadastroUser.css">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=location_on" />
+     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<header class="cabecalho">
+        <img src="../static/img/Viaje+_logo.png">
+        <a href="/"  class="linkSobreLogo"></a>
+        <a href="/rotasHorarios" > Rotas e Horários</a>
+        <a href="/loginuser" > Login</a>
+        <a href="/verificarAdm" > Acesso adm</a>
+
+         {% if 'cliente' in session: %}
+            <a href="/deslogar"> deslogar</a>
+         {% endif %}
+    </header>
+
+<br><br><br><br>
+
+
+   <div class="cadastro">
+        <form action="/criarconta" method="post">
+            <h1> Criação de Conta</h1>
+            <label>Nome</label>
+            <input name="nome" type="text" placeholder="digite seu nome">
+            <br>
+            <label>Cpf</label>
+            <input name="cpf"  type="text" placeholder="digite seu cpf">
+            <br>
+            <label>E-mail</label>
+            <input name="email" type="email" placeholder="digite seu e-mail">
+            <br>
+            <label>Senha</label>
+            <input name="senha"  type="password" placeholder="digite sua senha">
+            <br>
+            <button type="submit"> Entrar</button>
+        </form>
+   </div>
+
+
+<br><br><br><br>
+
+ <footer class="rodape">
+        <div class="rodape_cima">
+            <div class="logo">
+                <img src="../static/img/Viaje+_logo.png">
+            </div>
+             <div class="redes">
+               <a> <b>nossas redes sociais </b></a>
+            <a href="https://www.instagram.com/ana.lluizaax" target="_blank" class="instagram-link"> <i class="fab fa-instagram"></i>
+            </a>
+             </div>
+        </div >
+        <div class="rodape_baixo">
+            <div class="coluna">
+                <h3> <b>INSTITUCIONAL</b></h3>
+                <a href="#"> Sobre Nós</a>
+                <br>
+            </div>
+            <div class="coluna">
+                <h3> <b>AJUDA</b></h3>
+                <a href="#"> Perguntas Frequentes</a>
+                <br>
+                <a href="#"> Relatar Erro</a>
+                <br>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

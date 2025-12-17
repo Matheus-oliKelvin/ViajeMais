@@ -1,0 +1,212 @@
+body{
+margin: 0;
+
+}
+
+
+.cabecalho{
+    width: 100%;
+    height: 80px;
+    background-color: #0A3D62;
+    color: #1E90FF;
+    display: flex;
+    padding:0 35px;
+    align-items: center;
+    top: 0;
+    left: 0;
+}
+.cabecalho a{
+     color: #FF8C42;
+     text-decoration: none;
+     margin: 0 40px;
+     font-size: 19px;
+     font-family: "Oswald", sans-serif;
+}
+
+.cabecalho img {
+    width: 300px;
+    height: 300px;
+}
+
+.linkSobreLogo {
+  position: absolute;
+  top: 10px;
+   left: 35px;
+  width: 200px;
+  height: 60px;
+  display: block;
+  background: transparent;
+}
+.rodape{
+    background-color: #002B5B;
+    color: rgba(255, 255, 255, 0.9);
+    height: 20%;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+     margin-top: auto;
+}
+
+.rodape_cima{
+    justify-content:center;
+    background-color:  #0A3D62;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 15vh;
+}
+
+}
+
+.rodape_baixo{
+    display: flex;
+     justify-content: space-between;
+    width: 100%;
+    height: 20vh;
+    gap: 50px;
+}
+.coluna{
+    text-align: left;
+}
+
+.coluna a{
+    color: #FF8C42;
+     text-decoration: none;
+     margin: 0 40px;
+     font-size: 19px;
+     font-family: "Oswald", sans-serif;
+}
+
+
+.rodape b{
+    color: gray;
+
+}
+
+.rodape img{
+    width: 200px;
+    height: 200px;
+    margin: 0px;
+}
+.rodape i{
+    height: auto;
+     padding: 0 20px;
+     width: 12vh;
+}
+.instagram-link {
+  font-size: 30px;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+}
+
+.instagram-link:hover {
+  color: #ff66a5;
+}
+
+
+
+
+
+
+
+
+.propaganda{
+ position: relative;
+    display: flex;
+
+    background-image: url("../img/banner_viaje.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 50vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+.selerotas{
+    color: #0A3D62;
+    text-align: center;
+    margin-right: 15%;
+    background-color: white;
+    padding: 20px;
+    width: 300px;
+    height: auto;
+    border-radius: 20px;
+
+}
+
+
+.selerotas select{
+     margin-top: 2px;
+     height: 35px;
+    width: 60%;
+     border-radius: 10px;
+     color: #43AA8B ;
+}
+
+.selerotas button{
+    margin-top: 15px;
+    width: 60%;
+    height: 45px;
+    background-color: #0A3D62;
+    border-radius: 20px;
+    color: white;
+    border:none;
+}
+
+.principais_viagens{
+    height: 50%;
+    display: flex;
+    justify-content: center;
+
+}
+.principais_viagens a{
+    text-decoration: none;
+    color: black;
+}
+
+.viagem{
+    margin: 0 14px;
+     width: 250px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+ .viagem p{
+ font-size: 11px;
+ }
+ .viagem b{
+ font-size: 20px;
+ }
+ .viagem a{
+ text-decoration: none;
+
+ }
+
+.viagem_imagem{
+    position: relative
+
+}
+.viagem_imagem img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.viagem_corpo{
+    padding: 15px;
+    align-items: center;
+
+
+}
+.rotas{
+
+  align-items: center;
+}

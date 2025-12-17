@@ -1,0 +1,142 @@
+body{
+margin: 0;
+}
+
+.cabecalho{
+    width: 100%;
+    height: 80px;
+    background-color: #0A3D62;
+    color: #1E90FF;
+    display: flex;
+    padding:0 35px;
+    align-items: center;
+    top: 0;
+    left: 0;
+}
+.cabecalho a{
+     color: #FF8C42;
+     text-decoration: none;
+     margin: 0 40px;
+     font-size: 19px;
+     font-family: "Oswald", sans-serif;
+}
+
+.cabecalho img {
+    width: 300px;
+    height: 300px;
+}
+
+.linkSobreLogo {
+  position: absolute;
+  top: 10px;
+   left: 35px;
+  width: 200px;
+  height: 60px;
+  display: block;
+  background: transparent;
+}
+.rodape{
+    background-color: #002B5B;
+    color: rgba(255, 255, 255, 0.9);
+    height: 20%;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+     margin-top: auto;
+}
+
+.rodape_cima{
+    justify-content:center;
+    background-color:  #0A3D62;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 15vh;
+}
+
+}
+
+.rodape_baixo{
+    display: flex;
+     justify-content: space-between;
+    width: 100%;
+    height: 20vh;
+    gap: 50px;
+}
+.coluna{
+    text-align: left;
+}
+
+.coluna a{
+    color: #FF8C42;
+     text-decoration: none;
+     margin: 0 40px;
+     font-size: 19px;
+     font-family: "Oswald", sans-serif;
+}
+
+
+.rodape b{
+    color: gray;
+
+}
+
+.rodape img{
+    width: 200px;
+    height: 200px;
+    margin: 0px;
+}
+.rodape i{
+    height: auto
+     padding: 0 20px;
+     width: 12vh;
+}
+.instagram-link {
+  font-size: 30px;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+}
+
+.instagram-link:hover {
+  color: #ff66a5;
+}
+
+
+
+.login{
+     margin-top: 200px;
+    margin-left: 42%;
+    background-color: #577590;
+    width: 300px;
+    height: 300px;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius:10px;
+}
+.login input{
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+.login a{
+    color: #FF8C42;
+    text-decoration: none;
+}
+
+.login label{
+    margin-right: 80%;
+}
+.login button{
+    margin-top: 30px;
+    margin-bottom: 5px;
+    background-color:#0A3D62;
+    color:#F5F5F5;
+    font-weight: bold;
+    border-radius: 3px;
+    border: 1px solid #0A3D62;
+     width: 60%;
+    height: 40px;
+}

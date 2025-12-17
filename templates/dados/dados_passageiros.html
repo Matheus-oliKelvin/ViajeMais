@@ -3,18 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Dados Passageiros</title>
+      <link rel="stylesheet" href="../static/adm/voltar.css">
+      <link rel="stylesheet" href="../static/dados/dados_passageiros.css">
 </head>
 <body>
+    <div class="voltar">
+    <a href="/login_adm">voltar</a>
+</div>
     <h2> DADOS DOS PASSAGEIROS</h2>
-      {% for passageiro in dados_passageiros %}
-        <br>
-        <a>Nome: {{ passageiro[0] }} <a>
-        <br>
-        <a>Cpf: {{ passageiro[1] }} <a>
-        <br>
-        <a>E-mail: {{ passageiro[2] }} <a>
-          <hr>
-      {% endfor %}
 
+    <div class="container-cards">
+      {% for passageiro in dados_passageiros %}
+        <div class="card">
+            <div class="card-content">
+                <p><b>Nome:</b>  {{ passageiro.nome }}<p>
+                <p><b>Cpf:</b> {{ passageiro.cpf }} <p>
+                <p><b>E-mail:</b> {{ passageiro.email }} <p>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
 </body>
 </html>
